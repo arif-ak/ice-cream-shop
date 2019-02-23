@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="container">
+            <div id="welcome">
+                <h1><span>Welcome to</span> Ice Cream Shop</h1>
+            </div>
+
+                <div class="">
+                    <h3>Your order has been placed. </h3>
+                    <h3>Final bill amount is {{ finalAmount }} dirhams. </h3>
+                    <h3> Thank you for shopping with us. Have a nice day! </h3>
+                    <h3> Click  <a href="{{ path('shop') }}">here</a>  to order from us again </h3>
+                </div>    
+
+        </div>
+    </div>
+{% endblock %}
+

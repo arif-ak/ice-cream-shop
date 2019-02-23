@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+            <div id="welcome">
+                <h1><span>Welcome to</span> Ice Cream Shop</h1>
+            </div>
+            <div class="">
+                {{ form_start(form) }}
+                    {{ form_row(form.customerName)}}
+                    {{ form_row(form.customerMobile)}}
+
+                    <div class="col-sm-8 col-sm-offset-2" id ="flavours" data-prototype ="{{ form_widget(form.orderItems.vars.prototype) |e('html_attr')}}">
+                        {% for item in form.orderItems %}
+                            <div class="card card-warning mt-1">
+                                <div class="card-header"></div>
+                                <div class="card-body">
+                                    <div class="input-group">
+                                        {{ form_row(item) }} 
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>    
+
+                {{ form_end(form) }}
+            </div>
+
+{% endblock %}
+
