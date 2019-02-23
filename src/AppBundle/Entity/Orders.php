@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="orders")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrdersRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Orders
 {
@@ -63,6 +64,23 @@ class Orders
      * @ORM\OneToMany(targetEntity="OrderItem",mappedBy="Orders",cascade={"persist"})
      */
     private $orderItems;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->updated = new \DateTime();
+    }
 
 
     /**

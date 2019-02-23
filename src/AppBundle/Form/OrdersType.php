@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\Orders;
 use AppBundle\Form\OrderItemType;
-use Symfony\Component\Form\Extension\Core\Type\{CollectionType,SubmitType,TextType,IntegerType};
+use Symfony\Component\Form\Extension\Core\Type\{CollectionType,SubmitType,TextType,IntegerType,NumberType};
 
 class OrdersType extends AbstractType
 {
@@ -20,8 +20,9 @@ class OrdersType extends AbstractType
                 ->add('customerName',TextType::class,[
                     'attr' => array('class' => 'col-8')
                 ])
-                ->add('customerMobile', TextType::class,[
+                ->add('customerMobile', IntegerType::class,[
                     'attr' => array('class' => 'col-8')
+                    
                 ])
                 ->add('orderItems',CollectionType::class,[
                     'entry_type' => OrderItemType::class,

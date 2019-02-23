@@ -21,7 +21,7 @@ class ShopController extends Controller
     }
 
     /**
-     * @Route("/buy", name="shop")
+     * @Route("/", name="shop")
      */
     public function indexAction(Request $request)
     {
@@ -36,13 +36,14 @@ class ShopController extends Controller
             $returnData = $this->shopService->saveOrder($order);
 
             if($returnData){
+            
             return $this->render('icecream/success.html.twig', [
                 'finalAmount' => $order->getTotal(),
             ]);
             }
             
         }
-        // replace this example code with whatever you need
+
         return $this->render('icecream/index.html.twig', [
             'form' => $form->createView(),
         ]);

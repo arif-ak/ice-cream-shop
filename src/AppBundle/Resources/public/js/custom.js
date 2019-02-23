@@ -72,7 +72,7 @@ function addNewFlavourForm(){
     collectionHolder.data('index',index+1);
     
     //creating new card to be added as flavour
-    var card =  $('<div class="card card-warning mt-1"><div class="card-header"></div></div>');
+    var card =  $('<div class="card card-warning mt-1 col-8"><div class="card-header"></div></div>');
 
     //creating card body, then appending new flavourform
     var cardBody = $('<div class="card-body"></div>').append(newFlavourForm);

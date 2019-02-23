@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="order_item")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderItemRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class OrderItem
 { 
@@ -47,7 +48,7 @@ class OrderItem
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Orders", inversedBy="orderItems")
+     * @ORM\ManyToOne(targetEntity="Orders", cascade={"persist"},inversedBy="orderItems")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
     private $orderId;
@@ -86,6 +87,30 @@ class OrderItem
      * @ORM\Column(name="created", type="datetime", nullable=true)
      */
     private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->updated = new \DateTime();
+    }
 
 
     /**
@@ -240,6 +265,30 @@ class OrderItem
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return OrderItem
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 }
 

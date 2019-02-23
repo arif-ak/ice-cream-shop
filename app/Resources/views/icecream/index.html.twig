@@ -10,7 +10,7 @@
                     {{ form_row(form.customerName)}}
                     {{ form_row(form.customerMobile)}}
 
-                    <div class="col-sm-8 col-sm-offset-2" id ="flavours" data-prototype ="{{ form_widget(form.orderItems.vars.prototype) |e('html_attr')}}">
+                    <div class="" id ="flavours" data-prototype ="{{ form_widget(form.orderItems.vars.prototype) |e('html_attr')}}">
                         {% for item in form.orderItems %}
                             <div class="card card-warning mt-1">
                                 <div class="card-header"></div>

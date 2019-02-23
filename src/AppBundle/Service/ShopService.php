@@ -13,11 +13,16 @@ class ShopService
         $this->em = $container->get('doctrine')->getManager();
     }
 
+    /*
+    *   Function receives order object, processes data and persists to db, returing true on success
+    */
     public function saveOrder($order)
     {
         $total = 0; //to store total sum of all flavours
 
         foreach ($order->getOrderItems() as $item){
+
+            //looping through individual flavours to calculate final cost
             $total = $total + $item->getItemCost();
             $item->setOrderId($order);
 
@@ -29,8 +34,7 @@ class ShopService
             $item->setToppings($toppings);
 
         }
-        $order->setCreated(new \DateTime());
-        $order->setUpdated(new \DateTime());
+
         $order->setTotal($total);
         $this->em->persist($order);
         $this->em->flush();    
