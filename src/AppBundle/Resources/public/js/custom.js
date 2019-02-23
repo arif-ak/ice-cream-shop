@@ -6,12 +6,22 @@ var addFlavourButton = $('<button type="button" class="btn btn-info mt-1">Add  a
 
 $(document).ready(function(){
 
-    //to check atleast one flavour is selected
     $('.order-button').click(function (){ 
+
+        //to check atleast one flavour is selected
         if($('.card').length == 0){
             alert('Please select a flavour before submitting order');
             return false;
         }
+
+        //to check if quantity has been entered for all selected flavours
+        $(".item-cost").each(function() {
+            if(this.value == 0 || this.value.trim() == ""){
+                $(this).parent().parent().find('.item-quantity').focus();
+                alert("Please select number of scoops");
+                return false;
+            }
+        });
     });
 
     collectionHolder = $('#flavours');
@@ -72,7 +82,7 @@ function addNewFlavourForm(){
     collectionHolder.data('index',index+1);
     
     //creating new card to be added as flavour
-    var card =  $('<div class="card card-warning mt-1 col-8"><div class="card-header"></div></div>');
+    var card =  $('<div class="card card-warning mt-1 w-50"><div class="card-header"></div></div>');
 
     //creating card body, then appending new flavourform
     var cardBody = $('<div class="card-body"></div>').append(newFlavourForm);

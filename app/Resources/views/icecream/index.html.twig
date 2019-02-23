@@ -1,18 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    
-            <div id="welcome">
-                <h1><span>Welcome to</span> Ice Cream Shop</h1>
-            </div>
+    <div class="container col-10">
+            
             <div class="">
                 {{ form_start(form) }}
                     {{ form_row(form.customerName)}}
                     {{ form_row(form.customerMobile)}}
 
-                    <div class="" id ="flavours" data-prototype ="{{ form_widget(form.orderItems.vars.prototype) |e('html_attr')}}">
+                    <div id ="flavours" data-prototype ="{{ form_widget(form.orderItems.vars.prototype) |e('html_attr')}}">
                         {% for item in form.orderItems %}
-                            <div class="card card-warning mt-1">
+                            <div class="card card-warning mt-1 w-50">
                                 <div class="card-header"></div>
                                 <div class="card-body">
                                     <div class="input-group">
@@ -25,6 +23,7 @@
 
                 {{ form_end(form) }}
             </div>
+    </div>
 
 {% endblock %}
 

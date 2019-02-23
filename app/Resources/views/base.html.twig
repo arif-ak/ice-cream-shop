@@ -10,8 +10,12 @@
     </head>
     <body>
         
-        <div class="container col-md-6 style="border:1px solid #cecece;">
-        {% block body %}{% endblock %}
+        <div class="container">
+        <div id="welcome" class="text-center">
+                <h1>Welcome to Ice Cream Shop</h1>
+        </div>
+        {% block body %}
+        {% endblock %}
         </div>
         {% block javascripts %}
         {% endblock %}
